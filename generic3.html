@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Módulo 1</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+			<header id="header">
+				<a class="logo" href="index.html">PYTHONNET</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="generic3.html">MÓDULO I</a></li>
+					<li><a href="generic2.html">MÓDULO II</a></li>
+					<li><a href="generic.html">MÓDULO III</a></li>
+				</ul>
+			</nav>
+
+		<!-- Heading -->
+			<div id="heading" >
+				<h1>MÓDULO I - INICIANTE</h1>
+			</div>
+
+			<section id="main" class="wrapper">
+				<div class="inner">
+					<div class="content">
+						<header>
+							<h2>NÍVEL INICIANTE</h2>
+						</header>
+						
+						<hr />
+						<h3>INSTALAÇÃO</h3>
+						<p>Siga o passo-a-passo do video para uma instalação sem problemas.</p>
+						<a href="https://www.youtube.com/watch?v=7dgFSCPgxx0"><img src="images/thumb.JPG"></img></a>
+                        <hr />
+                        <h3>VARIÁVEIS</h3>
+                        <p>Variáveis são "caixas" que tem um nome e podem armazenar informações ou dados, como um nome ou o valor de um produto. Elas podem ter diversos tipos que podem mudar durante a execução, sendo eles:<br>
+                            int   = número inteiro <br>
+                            float = número decimal <br>
+                            str   = palavra, cercada de '' ou "", tanto faz <br>
+                            bool  = valor verdadeiro ou falso (True ou False) <br>
+                            list  = conjunto de outros valores entre [] e separados por , <br>
+                            Existem outros tipos de dado ou variável que nós vamos falar mais à frente</p>
+                        <p>A seguir temos um exemplo do uso desse conceito: <br><br>
+<pre><code>nome = 'Aquino'   # str
+idade = 16        # int
+altura = 1.72     # float
+estudante = True  # bool
+alunos = ["Miguel", 'Theo', "Aquino"] # list
+
+print('Oi, ' + nome + "!")</code></pre>
+                        </p>
+                        <hr />
+                        <h3>OPERADORES</h3>
+                        <p>Os operadores são caracteres que alteram os valores de outras variáveis ou dados. A maioria desses operadores só atuam em variáveis com valores numéricos como ints e floats mas alguns também funcionam com str, de uma forma diferente dos valores numéricos.</p>
+                        <p>O primeiro operador é o "=", que nós já usamos anteriormente e que não é o sinal de igual mas sim de assinar, ou seja, esse operador vai assinar um valor para outro da direita para a esquerda: <br> variavel = 1 (1 passa para a direita e a var vira 1)</p>
+                        <p>Operadores para ints e floats: <br><br>
+<pre><code>n = 2 + 3  # 5  | operador de adição            + 
+n = 3 - 2  # 1  | operador de subtração         - 
+n = 3 * 2  # 6  | operador de multiplicação     *   (x) 
+n = 4 ** 2 # 16 | operador de potenciação       **  (^) 
+n = 8 / 2  # 4  | operador de divisão           /  
+n = 7 // 3 # 2  | operador de divisão sem resto // 
+n = 5 % 2  # 1  | módulo / resto da divisão     %</code></pre></p>
+                        <p>Operadores para strings: <br><br>
+<pre><code>nome = "Aqui" + "no"        # 'Aquino' | concatenação     + 
+fruta = "Ba" + ("na"*2)     # 'Banana' | multiplicação    * 
+temA = 'A' in "Lorem Ipsum" # False | "tem X em Y?"   in 
+naoTemIp = 'Ip' not in "Lorem Ipsum" # False |    not in # not in  = contrário do in</code></pre></p>
+                        <p>Encurtamento de operações: <br><br>
+                            O operador = pode encurtar outras operações quando combinado com outros <br>
+<pre><code>n += 1   # n = n + 1 
+n -= 2   # n = n - 2 
+n *= 10  # n = n * 10 
+n /= 2   # n = n / 2</code></pre></p>
+                        <hr />
+                        <h3>LOOPS</h3>
+                        <p>As estruturas de repetição ou loops são muito importantes para que possamos repetir um bloco de código várias vezes. Existem dois loops no Python: o while e o for in.</p>
+                        <p>O while loop repete algo até certa condição ser falsa, um número muitas vees indeterminado de vezess, e consequentemente ele deve modificar essa condição pois caso contrário esse loop será infinito. Por exemplo: <br><br>
+<pre><code>repeticoes = 4
+while (repeticoes > 0):
+  print('Olá ', repeticoes)
+  repeticoes -= 1;           # Atualizando o numero de repeticoes
+# "Olá 4", "Olá 3", "Olá 2", "Olá 1"</code></pre></p>
+                        <p>Já o for in loop vai se repetir uma quantidade certa de vezes passando por cada elemento de uma lista ou str por exemplo. Por exemplo: <br> <br>
+<pre><code>palavra = 'banana'
+palavra_B = ''
+participantes = ['Miguel', 'Theo', 'Aquino']
+contagem_pessoas = 0</code></pre></p>
+                        <hr />
+                        <h3>INPUTS</h3>
+                        <p>Inputs são as entradas ou valores que o usuário coloca no programa e que podem ser usadas. Eles podem ser obtidos por meio do comando input(frase_de_comando) <br> <br>
+                            Exemplo de uso: <br>
+<pre><code>nome = input('Insira seu nome: \n') # *
+print("Olá, " + nome + "!")
+# Insira seu nome:
+# Aquino 
+# Olá, Aquino!
+# * O comando \n gera uma nova linha no programa</code></pre>
+                            </p>
+                            <hr />
+                            <h3>COMENTÁRIOS</h3>
+                        <p> Indo em frente, os comentários são partes do programa que são ignoradas na execução e que servem para guiar o programador e explicar o que o código está fazendo. 
+                            <br> Para criá-los, basta digitar # e depois desse caractere, todo o resto da linha será transformada em um comentário</p>
+                        <hr />
+                        <h3>CONDICIONAIS</h3>
+                        <p>As operações condicionais tornam o nosso programa dinâmico, permitindo que nós possamos mudar o rumo do programa com base em certas condições, como por exemplo se a senha e login estão corretos.</p>
+                        <p>Antes de aprendermos as estruturas condicionais, é importante entender os operadores condicionais (igual a, diferente de) que vão comparar dois valores e retornar True (verdadeiro) ou False (falso) com base na sua comparação. Esses operadores são:</p>
+                        <p> 
+<pre><code>x = 4
+y = 5
+z = 4
+x2 = x
+x == y      # False | operador de igualdade
+x != y      # True  | operador de desigualdade
+x is z      # False | operador de igualdade absoluta *
+x is not x2 # False | operador de desigualdade absoluta *
+x > y       # False | maior que
+x < y       # True  | menor que
+x >= z      # True  | maior ou igual a
+x <= y      # True  | menor ou igual a</code></pre>
+                            </p>
+					    <p>A igualdade absoluta significa que as duas variáveis são o mesmo objeto/variável, e retorna False mesmo se as duas variáveis tiverem o mesmo valor</p>
+                        <p>Estruturas condicionais: <br> As estruturas condicionais usam esses valores de True or False para determinar e mudar o rumo do programa, e elas são bem úteis ao se tomar decisões. Os If/Elif/Else funcionam da seguinte forma:</p>
+<pre><code>estoque = 11
+if (estoque <= 5):   # Condição a ser testada
+    print('Estoque quase vazio') # Código executado se a condição for verdadeira
+elif (estoque == 0): # Outra condição a ser testada se a o if for falso
+    print('Estoque vazio') # Se True, executa isso
+... # * podem ser usados infinitos elif
+else:                # Se todas forem falsas, executar isso:
+    print('Estoque normal')</code></pre>
+                    </div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+        <footer id="footer">
+            <div class="inner">
+                <div class="content">
+                    <section>
+                        <h3>PROJETO</h3>
+                        <p>Todo o projeto apresentado, incluindo o site e as video aulas, além, lógicamente de todo o conteúdo educacional, foi produzido e disponibilizado pelos alunos integrantes do grupo. O mesmo é baseado em cursos de programação e artigos encontrados na internet.</p>
+                    </section>
+                    <section>
+                        <h4>INTEGRANTES</h4>
+                        <ul class="alt">
+                            <li><a href="#">Miguel Damasceno Santos</a></li>
+                            <li><a href="#">Theo Nakaya Baruel</a></li>
+                            <li><a href="#">João Vitor Aquino</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>REDES SOCIAIS</h4>
+                        <ul class="plain">
+                            <li><a href="#"><i class="icon fa-youtube">&nbsp;</i>YouTube</a></li>
+                            <li><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                            <li><a href="#"><i class="icon fa-search">&nbsp;</i>Veja Mais</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="copyright">
+                    &copy; Todos direitos reservados à sala do Segundo ano de Automação - CTIG UNESP</a>.
+                </div>
+            </div>
+        </footer>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

@@ -39,7 +39,69 @@
 						<header>
 							<h2>NÍVEL INTERMEDIÁRIO</h2>
 						</header>
-						<p> Conteúdo em breve </p>
+						<hr>
+						<hr>
+						<h3>FUNÇÕES</h3>
+						<p>As funções são blocos de código que podem ser reusados em Python, e nós estamos usando elas desde o início do curso, como a função print(). Elas são criadas com a palavra especial "def" + o nome da função + () e podem receber argumentos dentro desses parênteses que podem ser usados para modificar esse argumento e retornar algo.</p>
+<pre><code>def dizer_olá():
+  print("Olá!")
+
+def cumprimentar(nome):
+  print("Bom dia,", nome);
+</code></pre>
+<p>As funções por si só não serão executadas até serem chamadas com seu nome seguido de parênteses contendo argumentos separados por vírgula.</p>
+<pre><code>dizer_olá() # Olá
+cumprimentar("Theo") # Bom dia, Theo
+</code></pre>
+<hr>
+<h3>Métodos, Arrays e Strings</h3>
+<p>As strings são as variáveis de texto (conjunto de caracteres) em Python, e existem diversos métodos - basicamente funções que trabalham sobre uma certa variável - que podem modificá-las e fazer diversas coisas interssantes. Já as arrays, como já explicado, são conjuntos de outros valores ou variáveis e elas também podem usufruir de diversos métodos, inclusive o formato das strings é baseado nas arrays como veremos a seguir.</p>
+<h3>Arrays</h3>
+<pre><code>carros = ["Gol", "Uno", "HB20"] # Exemplo de array</code></pre>
+<p>Nós podemos acessar todos esses itens com base nos seus índices, que é um número que identifica cada item e SEMPRE começa em 0 para identificar o primeiro item.</p>
+<pre><code>primeiro_carro = carros[0] # "Gol"</code></pre>
+<p>Podemos descobrir o tamanho de uma array com a função len, o que pode ser usado para descobrir o ultimo item da array por exemplo:</p>
+<pre><code>nmr_carros = len(carros) # 3
+ultimo_carro = carros[nmr_carros - 1] # "HB20"</code></pre>
+
+<p>O for loop também é muito usado para modificar ou ler todos os itens de uma array:</p>
+<pre><code>for carro in carros:
+	print(carro) # "Gol" | "Uno" | "HB20"</code></pre>
+
+<p>É possível adicionar ou remover itens de uma array e fazer outras diversas coisas com os <i>métodos</i> para arrays que serão mostrados abaixo:</p>
+<pre><code>carros.append("Ecosport") # Adiciona item ao final da array
+x = 1
+carros.pop(x)        # Remove X itens a partir do ultimo item da array - remove "Ecosport"
+carros.remove("Gol") # Remove o item X da array
+carros.sort()	     # Organiza a lista alfabeticamente</code></pre>
+<h3>STRINGS - AVANÇADO</h3>
+<p>Já aprendemos como funcionam as arrays e agora veremos como as strings têm semelhanças com elas e diversas outras coisas que podemos fazer com strings e que serão usadas em módulos mais avançados como Criptografia.</p>
+<p>A contagem de cada letra em uma string é feita como nas arrays, começando em 0 sempre e considerando cada letra como um elemento da array, como vemos a seguir:</p>
+<pre><code>string = "Ola mundo!"
+print(string[1])     # "l" - segundo item da 'array' de letras	
+</code></pre>
+<p>Agora veremos diversas estruturas e métodos que podem ser usados para strings, sendo alguns deles parecidos com as arrays. Antes é necessário lembrar que eles <b>não alteram</b> a variável original:</p>
+<pre><code>len(string)            # 10 | Retorna o tamanho da string
+print("Ola" in string) # True | Retorna se a letra/palavra está na string - também pode ser usado com o not na frente
+print(string.lower()) # "ola mundo!" | coloca todos os caracteres em minúsculo
+print(string.upper()) # "OLA MUNDO!" | COLOCA TODOS OS CARACTERES EM MAIÚSCULO
+string2 = "   ola mundo  "
+print(string2.strip()) # "ola mundo" | Remove os espaços à esquerda e direita da string
+print(string.replace('o', 'u')) # "Ola mundu" | Substitui uma letra por outra no programa
+array_string = string.split(" ") # ['Ola', 'mundo!'] | Separa a string em uma array com base no caractere selecionado
+</code></pre>
+<p>Abaixo teremos o slice de strings, que é usado para pegar apenas uma parte da string em questão e usa os indexes da string. A sintaxe dele é [primeiroItem:itemAposOUltimo], ou seja, o segundo index não vai ser incluído no slice.</p>
+<pre><code>print(string[0:5]) # "Ola m"
+print(string[5])   # "u"</code></pre>
+<p>Se algum deles for omitido, o slice irá até o começo/final da string</p>
+<pre><code>print(string[4:]) # "mundo!"
+print(string[:3]) # "Ola"
+</code></pre>
+<p>Por último, temos a formatação de strings que facilita a concatenação de strings, que é feita com o .format:</p>
+<pre><code>nome = 'Aquino'
+cumprimento = "bom dia"
+string3 = "Ola {}, {}! Como você está?"
+string3 = string3.format(nome, cumprimento) # "Ola Aquino, bom dia! Como você está?" | Substitui os {} com as variáveis </code></pre>
 					</div>
 				</div>
 			</section>

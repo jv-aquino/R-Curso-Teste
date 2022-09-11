@@ -39,7 +39,202 @@
 						<header>
 							<h2>NÍVEL AVANÇADO</h2>
 						</header>
-						<p> Conteúdo em breve </p>
+						<h3>CLASSES E OBJETOS</h3>
+							<p>As classes e objetos são partes fundamentais da linguagem Python pois servem para representar elementos mais complexos, como objetos da vida real, que não podem ser descritos ou ter suas funções baseadas só em uma variável.</p>
+							<p>Classes são as responsáveis por criar Objetos e tudo que eles contém. Os Objetos são criados pelas classes e podem conter diversas variáveis e funções próprias (os chamados Métodos). Exemplo de classe e objeto:</p>
+<pre><code>class Pessoa:
+	# A função __init__ é essencial para inicializar o objeto e criar suas variáveis
+	# Além dela precisa-se usar a variável self também, que referencia o próprio objeto
+	def __init__(self, nome, idade):
+		self.nome = nome
+		self.idade = idade</code></pre>
+							<p>Para se criarem outros métodos para o objetos também é necessário usar a variável self</p>
+
+<pre><code>def ola(self):
+	print("Ola, eu sou o " + self.name)
+
+def dizerIdade(self):
+	print("Eu tenho " + self.idade + " anos")</code></pre>
+									
+							<p>* a variável self não precisa ter esse nome mas PRECISA sempre ser o primeiro argumento das funções da Classe</p>
+							
+							<p>Para criar um objeto dessa classe, basta invocá-la como se fosse uma função</p>
+<pre><code>aquino = Pessoa("Aquino", 16)</code></pre>
+							
+<p>Para invocar os métodos do objeto, basta digitar o nome do objeto + . + seuMetodo()</p>
+<pre><code>aquino.ola()
+aquino.dizerIdade()</code></pre>
+							
+							<p>Também é possível deletar ou mudar as variáveis de um método</p>
+<pre><code>aquino.idade = 17
+del aquino.idade</code></pre>
+							
+							<p>Podemos também criar classes a partir de classes, o que é chamado de inheritance, onde a classe filha ganha as mesma propriedades da classe mãe (chamada super)</p>
+<pre><code>class Estudante(Pessoa):
+	def __init__(self, nome, idade, anoGraduacao):
+		# Iniciando as mesmas variáveis da classe Pessoa
+		super().__init__(nome, idade)
+		# Iniciando nova variável
+		self.anoGraduacao = anoGraduacao</code></pre>
+							
+							<h3>MÓDULOS</h3>
+							<p>Agora que entedemos bem os objetos, podemos ir para os módulos em Python, que nos ajudam a manter o código mais separado em diferentes arquivos e mais limpo. Com os módulos, podemos importar todo o código ou uma parte do código de outro arquivo em Python, o que nos permite escrever nossos programas de forma mais organizada, sem precisar escrever todo o código em um só arquivo gigantesco e confuso.</p>
+							<p>Como já falado, a sintaxe dos módulos é bem parecida com a dos objetos, onde a página importada se torna um objeto basicamente.</p>
+<pre><code>ola.py
+-----------------
+pessoa = "Miguel"
+def dizerOla(nome):
+	print("Olá, " + nome + "!")
+-----------------
+
+main.py
+-----------------
+import ola
+
+ola.dizerOla("Miguel")   # "Olá, Miguel!"
+ola.dizerOla(ola.pessoa) # "Olá, Miguel!"</code></pre>
+							
+							<p>O arquivo se torna uma espécie de objeto e podemos então acessar suas funções e variáveis chamando seus métodos assim como vimos com os objetos. Podemos ainda mudar o nome como queremos chamar esse objeto usando a palavra "as" -></p>
+<pre><code>main.py
+-----------------
+import ola as batata
+
+batata.dizerOla("Miguel")   # "Olá, Miguel!"</code></pre>
+							
+							<p>*Existem muitos módulos nativos do python e você pode usá-los assim como os módulos acima, basta olhar na documentação do módulo desejado.</p>
+							
+							<h3>TRY / EXCEPT</h3>
+							<p>O último tópico que nós cobriremos antes de começarmos o nosso projeto final são os blocos Try / Except. Esses blocos servem para evitar diversos erros que podem parar com a execução do seu programa. O bloco try tenta executar um código e se o código não funcionar, o bloco except será acionado -></p>
+<pre><code>try:
+	print(x) # Tenta printar a variável x que ainda não foi declarada, consequentemente gerando um erro
+except:
+	print("X ainda não foi declarado")</code></pre>
+							
+							<p>Eles servem para muitas coisas, mas principalmente para lidar com input de usuários e fazê-los colocar o formato que desejamos. Exemplo: </p>
+<pre><code>inputCerto = False  # Começamos criando uma variável de validade do input
+while inputCerto == False: # Enquanto o input for inválido...
+	try: 
+		numero = int(input("Escolha um numero: ")) # Aqui tentaremos pegar um input do usuário e transformá-lo em um inteiro
+		inputCerto = True # Se o input for um número não haverá problemas e portanto o input passa a ser válido
+	except:
+		# Porém, se o input não for válido, a variável não vai ser alterada e o loop tentará pedir o input novamente
+		print("Resposta inválida!\n")</code></pre>
+
+							<h3>CRIPTOGRAFIA</h3>
+							<p>Agora que já entendemos bastante da linguagem Python está na hora de usarmos ela na prática! O projeto final do curso será um pequeno projeto de criptografar e descriptografar frases usando a Cifra de César, mas primeiro precisamos entender o que é isso.</p>
+							<p>A criptografia é usada para transmitir informações para um alvo desejado sem que outros consigam interceptar, e isso é feito mudando a mensagem original com base em alguma chave. A Cifra de César é um método de criptografia onde a chave é usada para deslocar as letras do alfabeto para frente ou para trás.</p>
+							<p>Por exemplo: se a chave for 1 e a frase for "Ola Maria" o texto deve ficar "Pmb Nbsjb" (a vira b, i vira j, etc.). Se a chave fosse -1, a frase se tornaria "Nkz Lzqhz" (M volta para L, O volta para N, etc.).</p>
+							<p>!!! IMPORTANTE - Consulte a tabela ASCII para entender melhor esse programa</p>
+							<p>Para começar, vamos definir a função de criptografar</p>
+<pre><code>def criptografar():
+	chave = int(input("\nChave: "))
+	frase = input("Frase a ser cifrada: ")
+	fraseCifrada = ""
+
+	# Reduz a chave até o menor número possível (entre 0 a 26)
+	if chave >= 0:
+		chave = chave % 26 
+	else:
+		chave = chave % -26
+
+	# Pega todos os caracteres da frase e para cada um deles ...
+	for i in range(len(frase)):
+		char = frase[i]
+
+		# Verifica se é maiúsculo...
+		if (char.isupper()):
+			# Verifica se a chave passaria a letra Z ou voltaria para a letra A, se sim, reduz/aumenta a chave em 26
+			if (ord(char) + chave) > 90:
+				char = chr(ord(char) - 26)
+			elif (ord(char) + chave) < 65:
+				char = chr(ord(char) + 26)
+
+			# Adiciona o caractere somado a chave à frase cifrada
+			fraseCifrada += chr(ord(char) + chave)
+			
+		# Verifica se é minúsculo
+		elif (char.islower()):
+			# Verifica se a chave passaria a letra z ou voltaria para a letra a, se sim, reduz/aumenta a chave em 26
+			if (ord(char) + chave) > 122:
+				char = chr(ord(char) - 26)
+			elif (ord(char) + chave) < 97:
+				char = chr(ord(char) + 26)
+				
+			# Adiciona o caractere somado a chave à frase cifrada
+			fraseCifrada += chr(ord(char) + chave)
+			
+		# Se não for letra, só adiciona o caractere puro à frase
+		else:
+			fraseCifrada += char
+	print("Frase cifrada: " + fraseCifrada)</code></pre>
+
+<p>Agora faremos a parte de descriptografar, que é bem parecida com a parte de criptografar</p>
+<pre><code>def descriptografar():
+	chave = int(input("\nChave: "))
+	frase = input("Frase a ser descifrada: ")
+	fraseDescifrada = ""
+
+	# Reduz a chave até o menor número possível (entre 0 a 26)
+	if chave >= 0:
+		chave = chave % 26 
+	else:
+		chave = chave % -26
+
+	# Pega todos os caracteres da frase e para cada um deles ...
+	for i in range(len(frase)):
+		char = frase[i]
+
+		# Verifica se é maiúsculo...
+		if (char.isupper()):
+			# Verifica se a chave passaria a letra Z ou voltaria para a letra A, se sim, reduz/aumenta a chave em 26
+			if (ord(char) - chave) > 90:
+				char = chr(ord(char) - 26)
+			elif (ord(char) - chave) < 65:
+				char = chr(ord(char) + 26)
+
+			# Adiciona o caractere subtraído pela chave à frase cifrada
+			fraseDescifrada += chr(ord(char) - chave)
+			
+		# Verifica se é minúsculo
+		elif (char.islower()):
+			# Verifica se a chave passaria a letra z ou voltaria para a letra a, se sim, reduz/aumenta a chave em 26
+			if (ord(char) - chave) > 122:
+				char = chr(ord(char) - 26)
+			elif (ord(char) - chave) < 97:
+				char = chr(ord(char) + 26)
+				
+			# Adiciona o caractere subtraído pela chave à frase cifrada
+			fraseDescifrada += chr(ord(char) - chave)
+			
+		# Se não for letra, só adiciona o caractere puro à frase
+		else:
+			fraseDescifrada += char
+	print("Frase descifrada: " + fraseDescifrada)</code></pre>
+
+<p>Por fim (sim, esse é o final :( eu também sentirei sua falta) faremos um menu para que o usuário escreva se deseja criptografar ou descriptografar e depois executaremos ele:</p>
+<pre><code>def menu():
+	print("Menu - Cifra de César")
+	print("1 - Criptografar")
+	print("2 - Descriptografar")
+	invalido = True
+
+	while (invalido == True ):
+		try:
+			escolha = int(input("Escolha: "))
+			if (escolha > 0 and escolha < 3):
+				invalido = False
+			else:
+				print("Insira um número válido!\n")
+		except:
+			print("Insira um número!\n")
+			invalido = True
+
+	if escolha == 1:
+		criptografar()
+	elif escolha == 2:
+		descriptografar()
+
+menu()</code></pre>
 					</div>
 				</div>
 			</section>

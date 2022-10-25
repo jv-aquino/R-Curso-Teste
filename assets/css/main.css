@@ -125,8 +125,8 @@ strong, b {
 em, i {
   font-style: italic; }
 
-p {
-  margin: 0 0 2rem 0;
+p, li {
+  margin: 0 0 1.5rem 0;
   font-size: 1.2rem;
  }
 
@@ -215,6 +215,9 @@ pre {
     overflow-x: auto; 
     background-color: #111111;
     color: #ffffff;
+  }
+  pre code span {
+    color: turquoise;
   }
 
 hr {

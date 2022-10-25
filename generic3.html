@@ -37,8 +37,149 @@
 						
 						<hr />
 						<h3>INSTALAÇÃO</h3>
-						
-                    </div>
+            <p>
+                Softwares necessários para a execução:
+                <li><b>R-4.2.1</b> (pesuise "R project" e clique em R - 4.2.1 for windows)</li>
+                <li><b>RStudio</b> (ambiente) (pesuise rstudio no google, clique no link, baixe de acordo com seu computador)</li>
+            </p>
+            <h3>VETORES</h3>
+            <li>Criação</li>
+                <p>Agora vamos trabalhar com os objetos mais importantes, que são os vetores. Considerado o mais importante porque com base neles você consegue criar os demais objetos e vamos começar com a criação desses vetores.
+                </p>
+<pre><code>12       15      3      5 |
+
+vendas&lt;-c(12,15,3,5)
+meses&lt;-c("Jan","Fev","Mar","Abr")
+vendas2&lt;- scan()
+
+Genero &lt;- c("Masculino","Feminino")</code></pre>
+<li>Acessando</li>
+    <p>Temos aqui os vetores vendas e o vetor meses, ambos com quatro elementos.</p>
+<pre><code><span>&gt; vendas&lt;-c(12,15,3,5)</span>
+<span>&gt; vendas</span>
+[1] 12 15 3 5
+<span>&gt; meses&lt;-c("Jan","Fev","Mar","Abr")</span>
+<span>&gt; meses</span>
+[1] "Jan" "Fev" "Mar" "Abr"</code></pre>
+<p>Para acessar os elementos de um vetor, você usa os colchetes [   ] pois só existe uma dimensão. 
+    Quando usar os colchetes você pode especificar qual o índice que quer acessar. Outras linguagens como C++ consideram que essa primeira posição é a posição de índice zero, mas aqui a primeira posição é fornecida como 1, então vendas [1] é o primeiro elemento do vetor elemento, 12. Já o vendas [4], será o 5, conforme o exemplo abaixo.</p>
+<pre><code><span>&gt; vendas[1]</span>
+[1] 12
+<span>&gt; vendas[4]</span>
+[1] 5
+<span>&gt; vendas[c(1,3)]</span>
+[1] 12 3
+<span>&gt; vendas[1:3]</span>
+[1] 12 15 3</code></pre>
+
+<li>Modificando</li>
+    <p>Para modificar um vetor basta atribuir o que deseja à posição que quiser, podendo acrescentar valores, trocá-los de posição, retirá-los, adicionar ou retirar vários de uma vez etc, conforme o seguinte exemplo:</p>
+<pre><code># o vetor vendas foi criado nas aulas anteriores
+vendas[3] &lt;- 13
+vendas[4] &lt;- 15
+
+vendas[c(1,4)] &lt;- c(0,90)
+vendas[2:4] &lt;- c(40,35,28)
+
+meses[3:4] &lt;- c("Março","Abril")
+
+vendas &lt;- vendas[-4]
+
+vendas[4] &lt;-70
+
+vendas[5:7] &lt;- c(23,43,15)</code></pre>
+
+<li>Operações</li><p>Agora a parte mais interessante dos vetores seria fazer manipulações com eles. Operações com esses vetores, isso porque como você guarda informações você precisa somar elementos multiplicar, dividir e aplicar funções prontas.
+    Atualmente o vetor vendas está com esses elementos.
+    </p>
+<pre><code><span>&gt; vendas</span>
+[1] 0 40 35 70 23 43 15</code></pre>
+<p>Com isso podemos fazer diversas operações em cima desse vetor, alterando cada elemento de acordo com a operação realizada, como os seguintes exemplos:</p>
+<pre><code>length(vendas) #número de elementos do vetor
+
+vendas + 2 #soma
+vendas * 2 #multiplicação
+vendas / 2 #divisão
+vendas - 2 #subtração
+
+vendas ^ 2 #expoente
+
+log(vendas) #logarítimo
+mean(vendas) #média
+max(vendas) #valor máximo
+min(vendas) #valor mínimo</code></pre>
+<p>É possível realizar operações com o vetor vendas nesse caso para modificá-lo permanentemente:</p>
+<pre><code>vendas &lt;- vendas + vendas*2 # modificando vendas
+
+vendas_v1 &lt;- vendas # atribuindo a outro vetor
+vendas_v2 &lt;- c(15,30,40,23,34,31,80)# criando vetor vendas_v2</code></pre>
+<p>Dessa forma, podemos realizar operações entre esses esses dois vetores:</p>
+<pre><code># Operações entre os novos vetores criados
+vendas_v1 + vendas_v2
+vendas_v1 - vendas_v2
+vendas_v1 - vendas_v2 + vendas*4</code></pre>
+<p>A exceção surge quando algum vetor passa a ter um tamanho diferente do outro, impossibilitando o feitio das operações.</p>
+<pre><code>vendas_v1 <- vendas_v1[-1]
+
+vendas_v1 + vendas_2  #erro porque eles tem tamanhos diferentes</code></pre>
+<li>Vetores Lógicos</li>
+    <p>Ainda trabalhando com vetores vamos ver que é possível construir vetores lógicos. Normalmente surgem como resultado de operação com esses vetores e são chamados de vetores lógicos ou booleanos.
+	Criando aqui novos vetores de produtos e quantidades vendidas:
+</p>
+<pre><code>produtos&lt;-c("TV","Refrigerador","Notebook","Celular")
+quantidades&lt;-c(30,36,20,15)</code></pre>
+<p>Com vetores lógicos não temos valores como texto, mas sim como afirmação, falso ou verdadeiro. 
+	Por exemplo, podemos pegar o vetor quantidades e procurar saber se em todos esses produtos teve mais de 10 unidades vendidas. Para isso é necessário usar um comparador de operação, que vai me dar a resposta de acordo com a condição do vetor:
+</p>
+<pre><code></code></pre>
+<p>O que gera uma resposta em função da afirmação presente:</p>
+<pre><code></code></pre>
+<p>Outras comparações que podemos exercer são:</p>
+<pre><code></code></pre>
+<p>É possível também compararmos entre vetores de mesmo tamanho mas com valores diferentes, que geram os vetores booleanos de acordo com sua veracidade.</p>
+<pre><code></code></pre>
+<p>Podemos usar a operação de soma sum para checarmos se existe ou não algum elemento. Nesse caso, usaremos o vetor produtos.</p>
+<pre><code></code></pre>
+<p> A soma vai servir para sabermos nesse caso quantas TVs vamos ter no vetor. </p>
+<pre><code></code></pre>
+<p>É muito comum desejarmos saber onde está um determinado elemento no meu vetor. Ou seja, em qual posição ele se encontra?
+    Deixa eu te dar um exemplo simples:</p>
+    <pre><code></code></pre>
+
+    <h3>SEQUÊNCIAS</h3>
+    <p>Um outro elemento muito importante na linguagem R é o que chamamos de sequências, elas são utilizadas no processo de criação de funções para análise de dados. Ela é uma das bases fundamentais da linguagem e podemos começar com a criação de sequências.
+    </p>
+    <li>Criação</li>
+    <li>Usando elementos</li>
+<p>Podemos usar os dois pontos. Caso queira ir de um até vinte, é só colocar 1:20, que então será gerada uma sequência que começa em 1 e acaba em 20.</p>
+<pre><code></code></pre>
+<p>Dessa forma não é possível escolher os passos, como a ordem dos números.
+
+	Também conseguimos criar sequências por meio do comando seq. Não precisa colocar dois pontos aqui, apenas limite inferior, vírgula, limite superior. Vou colocar até o número 25.
+</p>
+<pre><code></code></pre>
+<p>Por padrão vai de 1 em 1, mas também pode ser feito por passos, por exemplo, caso queira gerar em passos de 2, vai gerar então uma progressão aritmética de até 25 pulando de 2 em 2 e começando em 1.</p>
+<pre><code></code></pre>
+<p>Pode também usar o comando rep, indicador de repetição. Por exemplo, repetir algum número η vezes, ou repetir também uma sequência.</p>
+<pre><code></code></pre>
+<li>Usando amostras aleatórias</li>
+<p>Em pesquisas e análises de dados é muito comum usar amostras aleatórias e o processo que faz a coleta de amostras é chamado amostragem. Dentro desse processo de amostragem normalmente se faz um sorteio.
+	Usando o comando sample, pode-se gerar uma sequência aleatoriamente, por exemplo, fazer uma amostragem aleatória usando como base os 30 dias do mês pegando 10 dias da semana avulsos entre 1 e 30. Sendo que a cada vez que você rode esse comando, gera uma nova sequência
+</p>
+<pre><code></code></pre>
+<p>Existe um argumento presente no comando sample que faz com que seja descartado algum valor aleatório fazendo com que ele não venha a aparecer mais nas suas amostragens, esse argumento é o <b>replace</b>. Um exemplo disso é o fato de não ser interessante em um sorteio uma pessoa ser sorteada mais de uma vez e esse argumento limita isso.
+</p>
+<pre><code></code></pre>
+<p>Outra coisa que também pode ser feita é a nomeação de sequências, por exemplo:
+</p>
+<pre><code>cod_produtos&lt;-100:150</code></pre>
+<p>Essa é uma sequência de código de produtos com números de 100 até 150.</p>
+<pre><code></code></pre>
+<p>É possível acessar os elementos da mesma forma de como acessamos elementos dos vetores, por meio dos colchetes.</p>
+<pre><code></code></pre>
+<p>Ou também podemos alterar seus valores, por exemplo, trocando o valor da terceira posição da sequência de códigos para 1002.</p>
+<pre><code>cod_produtos[3]&lt;-1002</code></pre>
+</div>
 				</div>
 			</section>
 

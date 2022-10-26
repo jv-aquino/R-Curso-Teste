@@ -46,7 +46,7 @@
             <li>Criação</li>
                 <p>Agora vamos trabalhar com os objetos mais importantes, que são os vetores. Considerado o mais importante porque com base neles você consegue criar os demais objetos e vamos começar com a criação desses vetores.
                 </p>
-<pre><code>12       15      3      5 |
+<pre><code>12       15      3      5 
 
 vendas&lt;-c(12,15,3,5)
 meses&lt;-c("Jan","Fev","Mar","Abr")
@@ -131,20 +131,40 @@ quantidades&lt;-c(30,36,20,15)</code></pre>
 <p>Com vetores lógicos não temos valores como texto, mas sim como afirmação, falso ou verdadeiro. 
 	Por exemplo, podemos pegar o vetor quantidades e procurar saber se em todos esses produtos teve mais de 10 unidades vendidas. Para isso é necessário usar um comparador de operação, que vai me dar a resposta de acordo com a condição do vetor:
 </p>
-<pre><code></code></pre>
+<pre><code>quantidades > 10</code></pre>
 <p>O que gera uma resposta em função da afirmação presente:</p>
-<pre><code></code></pre>
+<pre><code><span>> quantidades > 10</span>
+[1] TRUE TRUE TRUE TRUE</code></pre>
 <p>Outras comparações que podemos exercer são:</p>
-<pre><code></code></pre>
+<pre><code>quantidades > 10 # maior
+quantidades >= 20 # maior ou igual
+quantidades &lt; 10 # menor
+quantidades &lt;= 20 # menor ou igual
+quantidades == 25 # igualdade
+quantidades != 25 # diferente </code></pre>
 <p>É possível também compararmos entre vetores de mesmo tamanho mas com valores diferentes, que geram os vetores booleanos de acordo com sua veracidade.</p>
-<pre><code></code></pre>
+<pre><code>quantidades2&lt;-quantidades*2 # criando outro vetor
+
+# Podemos fazer os mesmos testes entre esses vetores
+quantidades == quantidades2
+quantidades != quantidades2
+quantidades > quantidades2
+quantidades &lt; quantidades2</code></pre>
 <p>Podemos usar a operação de soma sum para checarmos se existe ou não algum elemento. Nesse caso, usaremos o vetor produtos.</p>
-<pre><code></code></pre>
+<pre><code>produtos == "TV" # O vetor produtos tem TV?
+sum(produtos == "TV") # Quantas?</code></pre>
 <p> A soma vai servir para sabermos nesse caso quantas TVs vamos ter no vetor. </p>
-<pre><code></code></pre>
+<pre><code><span>> produtos</span>
+[1] "TV" "Refrigerador" "Notebook" "Celular"
+<span>> produtos == "TV" # O vetor produtos tem TV?</span>
+[1] TRUE FALSE FALSE FALSE
+<span>> sum(produtos == "TV") # Quantas?</span>
+[1] 1</code></pre>
 <p>É muito comum desejarmos saber onde está um determinado elemento no meu vetor. Ou seja, em qual posição ele se encontra?
     Deixa eu te dar um exemplo simples:</p>
-    <pre><code></code></pre>
+<pre><code>nomes &lt;c("Maria", "João", "Luiza", "Paula")
+
+match("Paula", nomes) # Localiza a posição de "Paula"</code></pre>
 
     <h3>SEQUÊNCIAS</h3>
     <p>Um outro elemento muito importante na linguagem R é o que chamamos de sequências, elas são utilizadas no processo de criação de funções para análise de dados. Ela é uma das bases fundamentais da linguagem e podemos começar com a criação de sequências.
@@ -152,31 +172,48 @@ quantidades&lt;-c(30,36,20,15)</code></pre>
     <li>Criação</li>
     <li>Usando elementos</li>
 <p>Podemos usar os dois pontos. Caso queira ir de um até vinte, é só colocar 1:20, que então será gerada uma sequência que começa em 1 e acaba em 20.</p>
-<pre><code></code></pre>
+<pre><code><span>> 1:20</span>
+[1] 1 2 3 4 5 6 7 8 9 10 11 (...) 19 20</code></pre>
 <p>Dessa forma não é possível escolher os passos, como a ordem dos números.
 
 	Também conseguimos criar sequências por meio do comando seq. Não precisa colocar dois pontos aqui, apenas limite inferior, vírgula, limite superior. Vou colocar até o número 25.
 </p>
-<pre><code></code></pre>
+<pre><code><span>> seq(1,25)</span>
+[1] 1 2 3 4 5 6 7 8 9 (...) 24 25</code></pre>
 <p>Por padrão vai de 1 em 1, mas também pode ser feito por passos, por exemplo, caso queira gerar em passos de 2, vai gerar então uma progressão aritmética de até 25 pulando de 2 em 2 e começando em 1.</p>
-<pre><code></code></pre>
+<pre><code><span>> seq(1,25,2)</span>
+[1] 1 3 5 7 9 11 (...) 21 23 25</code></pre>
 <p>Pode também usar o comando rep, indicador de repetição. Por exemplo, repetir algum número η vezes, ou repetir também uma sequência.</p>
-<pre><code></code></pre>
+<pre><code><span>> rep(3,4)</span>
+[1] 3 3 3 3
+<span>> rep(1:4,3)</span>
+[1] 1 2 3 4 1 2 3 4 1 2 3 4</code></pre>
 <li>Usando amostras aleatórias</li>
 <p>Em pesquisas e análises de dados é muito comum usar amostras aleatórias e o processo que faz a coleta de amostras é chamado amostragem. Dentro desse processo de amostragem normalmente se faz um sorteio.
 	Usando o comando sample, pode-se gerar uma sequência aleatoriamente, por exemplo, fazer uma amostragem aleatória usando como base os 30 dias do mês pegando 10 dias da semana avulsos entre 1 e 30. Sendo que a cada vez que você rode esse comando, gera uma nova sequência
 </p>
-<pre><code></code></pre>
+<pre><code><span>> sample(1:30,10)</span>
+[1] 17 28 1 26 22 24 12 29 21 27</code></pre>
 <p>Existe um argumento presente no comando sample que faz com que seja descartado algum valor aleatório fazendo com que ele não venha a aparecer mais nas suas amostragens, esse argumento é o <b>replace</b>. Um exemplo disso é o fato de não ser interessante em um sorteio uma pessoa ser sorteada mais de uma vez e esse argumento limita isso.
 </p>
-<pre><code></code></pre>
+<pre><code>sample(1:30,10,replace = T)
+sample(1:30,10,replace = F)</code></pre>
 <p>Outra coisa que também pode ser feita é a nomeação de sequências, por exemplo:
 </p>
 <pre><code>cod_produtos&lt;-100:150</code></pre>
 <p>Essa é uma sequência de código de produtos com números de 100 até 150.</p>
-<pre><code></code></pre>
+<pre><code><span>> cod_produtos&lt;-100:150</span>
+<span>> cod_produtos</span>
+[1] 100 101 102 103 104 105 106 (...) 119 120 121
+[23] 122 123 124 125 126 127 128 (...) 141 142 143
+[45] 144 145 146 147 148 149 150</code></pre>
 <p>É possível acessar os elementos da mesma forma de como acessamos elementos dos vetores, por meio dos colchetes.</p>
-<pre><code></code></pre>
+<pre><code><span>> cod_produtos[3]</span>
+[1] 102
+<span>> cod_produtos[3:9]</span>
+[1] 102 103 104 105 106 107 108
+<span>> cod_produtos[c(4,10)]</span>
+[1] 103 109</code></pre>
 <p>Ou também podemos alterar seus valores, por exemplo, trocando o valor da terceira posição da sequência de códigos para 1002.</p>
 <pre><code>cod_produtos[3]&lt;-1002</code></pre>
 </div>

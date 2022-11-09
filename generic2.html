@@ -40,10 +40,339 @@
 							<h2>NÍVEL INTERMEDIÁRIO</h2>
 						</header>
 						<hr>
-						
-						<hr>
-						<h3>FUNÇÕES</h3>
-						
+						<h3>MATRIZES</h3>
+						<p>Agora depois trabalhamos com sequências. Vamos trabalhar com as matrizes que são muito usadas no ambiente corporativo como um ambiente de pesquisa científica.<br>
+						Não é à toa, porque ela tem uma estrutura de uma base de dados como se fosse uma tabela do excel em termos mais práticos, tem linhas e colunas, e, esse tipo de abordagem, que vamos trabalhar durante todo o processo de análise a partir de agora.</p>
+
+            <li>Criação a partir de um vetor</li>
+						<p>Simplesmente pegar dois vetores, juntá-los ordenadamente, podendo ser colocados em linhas ou em colunas usando os comandos rbind e cbind respectivamente.</p>
+<pre><code># Matrizes - Criação usando vetores
+
+produtos  #criado nas aulas anteriores
+quantidades #criado nas aulas anteriores
+
+vendas&lt;-cbind(produtos,quantidades) #pega os vetores e coloca em colunas
+vendas&lt;-rbind(produtos,quantidades) #pega os vetores e coloca em linhas</code></pre>
+						<li>Criação a partir da função matrix()</li>
+						<p>É uma função que precisa dos elementos, o número de linhas e o números e colunas. Como está no seguinte exemplo:</p>
+<pre><code>matrix(1:20, nrow =4 ,ncol=5) #números de 1 até 20 com 4 linhas e 5 colunas
+matrix("Brasil", nrow =4 ,ncol=5) #com elemento escrito 
+matrix(0, nrow =4 ,ncol=5) #matriz nula</code></pre>
+						<p>Também pode ser feito da seguinte forma:</p>
+<pre><code><span>> matrix(1:20, nrow =4 ,ncol=5,byrow = T) #por linha</span></code></pre>
+						<p>A função <b>byrow</b>, quando verdadeira, indica que a matriz deverá ser ordenada por linhas.</p>
+						<li>Acessando uma matriz</li>
+						<p>Para acessar os elementos de uma matriz, assim como nos vetores, basta colocar o nome da matriz e em seguida linha por coluna, conforme o exemplo.</p>
+<pre><code>vendas[1,2] #linha 1 da coluna 2
+vendas[1,] #linha 1 completa
+vendas[,2] #coluna 2 completa
+vendas[2:4,] #da linha 2 à linha 4
+vendas[2:4,1] #da linha 2 à linha 4 da primeira coluna</code></pre>
+<p>E é dessa maneira que você conseguirá acessar um elemento dentro de uma matriz.</p>
+<li>Modificando uma matriz</li>
+<p>É muito raro você criar algo e não fazer ajustes, e é isso que a gente vai fazer com matrizes. Após você criar essas matrizes e acessar os elementos também poderá modificá-los.
+Temos a matriz <b>vendas</b> e vamos passar ela pra <b>vendas_Jan</b>. E <b>vendas_Fev</b> como um clone de <b>vendas_Jan</b>.</p>
+<pre><code>vendas_Jan&lt;-vendas
+vendas_Fev&lt;-vendas_Jan</code></pre>
+<p>Após isso, vamos alterar as <b>vendas_Fev</b> da seguinte forma:</p>
+<pre><code>#para a segunda coluna, adicionar 2 para todos os valores, sendo eles numericos
+vendas_Fev[,2]&lt;- as.numeric(vendas_Jan[,2]) + 2</code></pre>
+<p>Logo, teremos as matrizes:</p>
+<pre><code><span>> vendas_Fev</span>
+	produtos 	quantidades
+[1,] 	"TV" 		"32"
+[2,] 	"Refrigerador" 	"38"
+[3,] 	"Notebook" 	"22"
+[4,] 	"Celular" 	"17"
+
+<span>> vendas_Jan</span>
+produtos 	quantidades
+[1,] 	"TV" 		"30"
+[2,] 	"Refrigerador" 	"36"
+[3,] 	"Notebook" 	"20"
+[4,] 	"Celular" 	"15"</code></pre>
+<p>A partir dessas novas matrizes podemos alterá-las da seguinte forma:</p>
+<pre><code>vendas_Fev[1,1]&lt;-c("Televisor") #mudando de TV para Televisor
+vendas_Fev[3,] &lt;- c("PC",40) #mudando na ordem dos elementos
+vendas_Fev[2:4,2] &lt;- c(12,100,30) #mudando em mesma quantidade
+vendas_Fev[c(1,4),1] &lt;- c("TV","Smartphone") #mudando na concatenadamente</code></pre>
+<p>Assim modificando a matriz vendas_Fev por completo:</p>
+<pre><code><span>> vendas_Fev</span>
+	produtos 	quantidades
+[1,] 	"TV" 		"32"
+[2,] 	"Refrigerador" 	"12"
+[3,] 	"Notebook" 	"100"
+[4,] 	"Celular" 	"30"</code></pre>
+<p>Caso queira excluir uma coluna da matriz é só colocar a matriz, no caso <b>vendas_Fev</b> seguido de <b>[ ,-1]</b>, assim sumindo com a primeira coluna da matriz.</p>
+<pre><code>#Tirando colunas e linhas
+vendas_Fev[,-1]
+vendas_Fev[-2,]
+vendas_Fev[-1,-2]</code></pre>
+<p>Essas sentenças vão apenas demonstrar como a matriz ficaria de tal modo, mas caso queira realmente aplicar à matriz, é preciso fazer da seguinte forma:</p>
+<pre><code>vendas_Fev &lt;- vendas_Fev[-4,] #realmente aplicando-se à matriz</code></pre>
+<li>Operações com matrizes</li>
+<p>Agora chegamos à parte mais interessante que são as operações com matrizes. O que for aprendido aqui será também utilizado para uma tabela maior e mais complexas, por exemplo os data frames, os bancos de dados do R em geral.
+Podemos começar criando alguns vetores e passando eles para uma matriz.</p>
+<pre><code>carlos&lt;-c(120,130,400,230)
+marcos&lt;-c(20,334,420,130)
+maria&lt;-c(22,28,19,10)
+
+vendas_Reais &lt;- cbind(carlos,marcos,maria)</code></pre>
+<p>Caso queiramos saber as dimensões da nossa matriz basta usar a função <b>dim()</b>, ou também especificamente o número de linhas ou colunas.</p>
+<pre><code>dim(vendas_Reais) #dimensão: linha por coluna
+nrow(vendas_Reais) #número de linhas
+ncol(vendas_Reais) #número de colunas</code></pre>
+<p>Vamos adicionar mais 5 reais a todos os valores de vendas_Reais e em seguida gerar uma comissão com base nessa matriz:</p>
+<pre><code>vendas_Reais &lt;- vendas_Reais + 5
+
+comissoes&lt;- vendas_Reais*0.10</code></pre>
+<p>Temos então:</p>
+<pre><code><span>> vendas_Fev</span>
+	carlos 	marcos 	maria
+[1,] 	125 	25  	27
+[2,] 	135 	339 	33
+[3,] 	405 	425 	24
+[4,] 	235 	135 	15
+
+<span>> comissoes</span>
+	carlos 	marcos 	maria
+[1,] 	12.5 	2.5  	2.7
+[2,] 	13.5 	33.9 	3.3
+[3,] 	40.5 	42.5 	2.4
+[4,] 	23.5 	13.5 	1.5</code></pre>
+<p>Dessa nova matriz de <b>comissões</b> podemos realizar algumas operações como:</p>
+<pre><code>comissoes/2 #dividir por 2
+comissoes ^ 2 #elevar ao quadrado
+
+sqrt(comissoes) #raiz quadrada
+log(comissoes) #logaritimo
+
+sum(comissoes[,1]) #quanto CARLOS ganhou de comissões
+
+mean(comissoes[,1]) # qual é a venda média dos vendedores?
+mean(vendas_Reais[,1]) #faturamento médio do vendedor
+
+sum(comissoes) #soma total das comissões</code></pre>
+<p>Aqui no R também é possível fazer soma de matrizes. Temos aqui duas novas matrizes geradas em função da matriz de <b>comissões</b>.</p>
+<pre><code><span>> Jan &lt;-comissoes*2</span>
+<span>> Jan</span>
+	carlos 	marcos 	maria
+[1,] 	25 	5.0  	5.4
+[2,] 	27 	67.8 	6.6
+[3,] 	81 	85.0 	4.8
+[4,] 	47 	27.0 	3.0
+
+<span>> Fev &lt;-comissoes</span>
+<span>> Fev</span>
+	carlos 	marcos 	maria
+[1,] 	12.5 	2.5  	2.7
+[2,] 	13.5 	33.9 	3.3
+[3,] 	40.5 	42.5 	2.4
+[4,] 	23.5 	13.5 	1.5</pre></code>
+<p>É possível realizar operações entre as matrizes:</p>
+<pre><code><span>> Jan + Fev</span>
+	carlos 	marcos 	maria
+[1,] 	37.5 	7.5  	8.1
+[2,] 	40.5 	101.7 	9.9
+[3,] 	121.5 	127.5 	7.2
+[4,] 	70.5 	40.5 	4.5
+
+<span>> Jan - Fev</span>
+	carlos 	marcos 	maria
+[1,] 	12.5 	2.5  	2.7
+[2,] 	13.5 	33.9 	3.3
+[3,] 	40.5 	42.5 	2.4
+[4,] 	23.5 	13.5 	1.5
+
+<span>> Jan * Fev</span>
+	carlos 	marcos 	maria
+[1,] 	312.5 	12.50  	14.58
+[2,] 	364.5 	2298.42 21.78
+[3,] 	3280.5 	3612.5 	11.52
+[4,] 	1104.5 	364.50 	4.50</code></pre>
+
+<p>Mas para se obter o produto matricial, como se sabe, é preciso que o número de colunas de uma matriz seja exatamente igual ao número de linhas de outra matriz. Obter esse produto, usamos duas porcentagens, uma antes e outra depois do asterisco da multiplicação: %*%. 
+Se as duas matrizes não estiverem adequadamente dimensionadas para serem multiplicadas, vai resultar em um erro.</p>
+<pre><code>Jan %*% Fev #erro lógico matricial
+Jan %*% Fev[-3,] #dimensionando coerentemente para a multiplicação</code></pre>
+<p>Nesse caso, a matriz Fev possui 3 linhas a mais do que o necessário para realizar a multiplicação, para isso, precisou-se retirar essas 3 linhas para que o produto matricial fosse possível.</p>
+<pre><code><span>> dim(Jan)</span>
+[1] 4 3
+<span>> dim(Fev[-3,])</span>
+[1] 3 3</code></pre>
+
+<hr>
+<h3>MATRIZES</h3>
+<p>São um tipo de objeto no qual você conseguirá juntar e analisar várias tabelas simultaneamente. Quando eu tenho várias planilhas de mesma dimensão, sempre todas as planilhas vão ter uma quantidade X de linhas e Y de colunas e eu quero juntar tudo isso em um único objeto para acessar de forma mais simples, usarei então o array.</p>
+<li>Criação usando matrizes</li>
+<p>Vai utilizar a função <b>array</b>, que nela você vai colocar os elementos, as dimensões e os nomes das dimensões.</p>
+<pre><code>array(elementos, dim(L,C,M), nomeDasDimensoes</code></pre>
+<p>Na região dos elementos é o lugar onde deve ser especificado como vai ser gerado o array, podendo ser por matrizes ou por vetores. Na região das dimensões vai te dar três valores, a quantidade de linhas, a quantidade de colunas e a quantidade de matrizes. O nome das dimensões indica os nomes das linhas, colunas, matrizes etc.
+Criando um array com uma matriz:</p>
+<pre><code>A&lt;-matrix(1:20,4,5)
+
+array(A, dim = c(4,5,2))  
+		
+array(A, dim = c(4,5))</code></pre>
+<p>A partir disso, a matriz passa a ser um array com duas matrizes.</p>
+<li>Criação usando vetores e nomeando as dimensões</li>
+<p>Vamos começar aqui criando dois vetores:</p>
+<pre><code><span>> vendas</span>
+[1] 12 24 30
+<span>> produtos</span>
+[1] "TV"  "Geladeira"  "Cama"</code></pre>
+<p>Agora vamos usar um array combinando esses dois vetores, em função de vendas ao longo de três meses:</p>
+<pre><code><span>> vendas_totais&lt;-array(c(produtos,vendas),dim = c(3,2,3))</span>
+<span>> vendas_totais</span>
+, , 1
+	[1,] 		[2,]
+[1,] 	"TV" 		"12"
+[2,] 	"Geladeira" 	"24"
+[3,] 	"Cama" 		"30"
+
+, , 2
+	[1,] 		[2,]
+[1,] 	"TV" 		"12"
+[2,] 	"Geladeira" 	"24"
+[3,] 	"Cama" 		"30"
+
+, , 3
+	[1,] 		[2,]
+[1,] 	"TV" 		"12"
+[2,] 	"Geladeira" 	"24"
+[3,] 	"Cama" 		"30"</code></pre>
+<p>Depois de criados vamos aprender como nomear essas dimensões que inserimos na função array. Para cada uma dessas matrizes desse array um mês será atribuído, para isso, usamos a seguinte forma, criamos novas matrizes com os conteúdos desejados:</p>
+<pre><code>nomes_variaveis&lt;-c("Produtos","Quantidade")
+nomes_matrizes&lt;-c("Janeiro","Fevereiro","Março")
+nomes_linhas&lt;-c("Marcos","João","Maria")</code></pre>
+<p>Após isso, usamos um array para usar esses nomes criados por meio da subfunção <b>dimnames = list(matrizes)</b>.</p>
+<pre><code><span>> array(c(produtos,vendas),dim = c(3,2,3),dimnames = list(nomes_linhas,nomes_variaveis,nomes_matrizes))</span>
+, , Janeiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Geladeira" 	"24"
+Maria 	"Cama" 		"30"
+
+, , Fevereiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Geladeira" 	"24"
+Maria  	"Cama" 		"30"
+
+, , Março
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Geladeira" 	"24"
+Maria  	"Cama" 		"30"</code></pre>
+<li>Pesquisa por dimensão</li>
+<p>Agora que criou seu array, pode fazer pesquisas dentro dele, acessar elementos específicos. Pode-se começar pela dimensão desse novo array <b>vendas_totais</b>:</p>
+<pre><code><span>> vendas_totais</span>
+, , Janeiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Geladeira" 	"24"
+Maria 	"Cama" 		"30"
+
+, , Fevereiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Geladeira" 	"24"
+Maria  	"Cama" 		"30"
+
+, , Março
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Geladeira" 	"24"
+Maria  	"Cama" 		"30"
+
+<span>> dim(vendas_totais)</span>
+[1] 3 2 3</code></pre>
+<p>Já que em arrays temos 3 dimensões, para pesquisar qualquer coisa dentro do meu array preciso, nesse caso, usar assim como em vetores, que tem 1 dimensão, matrizes, que tem 2 dimensões, em arrays temos 3, mantendo o seguinte padrão:</p>
+<pre><code>vendas_totais[linha,coluna,matriz]
+
+vendas_totais[,,1]  #vendas Janeiro
+vendas_totais[,,2]  #vendas Fevereiro
+vendas_totais[,,3]  #vendas Março
+
+
+vendas_totais[,1,]  # Coluna 1 de cada matriz = Produtos vendidos em cada mês
+vendas_totais[,2,]  # Coluna 2 de cada matriz = Quantidades vendidas em cada mês
+
+vendas_totais[1, ,]  # a Linha 1 de cada tabela = produção de Marcos (produtos e quantidades)
+vendas_totais[2, ,]   # a Linha 2 de cada tabela = produção de João  (produtos e quantidades)
+vendas_totais[3, ,]   # a Linha 3 de cada tabela = produção de Maria  (produtos e quantidades)</code></pre>
+<li>Modificando elementos</li>
+<p>Agora que já criou seu array, acessou seus elementos, você poderá modificá-los. Isso é importante que você saiba porque frequentemente existem atualizações do banco de dados que mudam informações ou pode acontecer algum erro de digitação e você precisa corrigi-las.
+	Para modificar algum elemento dentro de um array, assim como em vetores e matrizes, é preciso indicar a posição desse elemento. </p>
+<pre><code><span>> vendas_totais[1,2,1]&lt;-14</span>
+<span>> vendas_totais</span>
+, , Janeiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		<b><span>"14"</span></b>
+João 	"Geladeira" 	"24"
+Maria 	"Cama" 		"30"
+
+, , Fevereiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Geladeira" 	"24"
+Maria  	"Cama" 		"30"</code></pre>
+<p>Aqui ele pega a primeira linha e a segunda coluna da primeira matriz e insere o novo valor desejado.</p>
+<pre><code><span>> vendas_totais[2 ,, 2]&lt;-c("Freezer",10)</span>
+<span>> vendas_totais</span>
+, , Janeiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"14"
+João 	"Geladeira" 	"24"
+Maria 	"Cama" 		"30"
+
+, , Fevereiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	<b><span>"Freezer"</span></b> 	<b><span>"10"</span></b>
+Maria  	"Cama" 		"30"</code></pre>
+<p>Deste modo, ele pega a linha inteira da segunda matriz e substitui pelos elementos desejados inseridos na ordem certa em que aparecem nela.</p>
+<pre><code><span>> vendas_totais[2:3,2,3]&lt;-c(34,80)</span>
+<span>> vendas_totais</span>
+, , Janeiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"14"
+João 	"Geladeira" 	"24"
+Maria 	"Cama" 		"30"
+
+, , Fevereiro
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	"Freezer" 	"10"
+Maria  	"Cama" 		"30"
+
+, , Março
+	Produtos 	Quantidade
+Marcos 	"TV" 		"12"
+João 	<b><span>"Geladeira" 	"34"</span></b>
+Maria  	<b><span>"Cama" 		"80"</span></b></code></pre>
+<p>Nesse último exemplo ele escala as duas últimas linhas da segunda coluna da terceira matriz e insere os novos valores desejados.</p>
+<li>Operações com arrays</li>
+<p>Vamos agora fazer operações com esses arrays que foram criados. Operações é importante pois na realidade o que você quer é fazer a análise de dados, por exemplo, você vai querer calcular desses elementos desse array uma média de faturamento, de produtos vendidos, uma soma, lucro máximo etc.
+Vamos usar ainda o array vendas_totais criado anteriormente. Caso queira fazer uma busca de todas as segundas colunas do array:</p>
+<pre><code><span>> vendas_totais[,2,]</span>
+	Janeiro Fevereiro Março
+Marcos 	"12" 	"12" 	"12"
+João 	"24" 	"24" 	"24"
+Maria 	"30" 	"30" 	"30"</code></pre>
+<p>Digamos que eu queira saber qual a quantidade total vendida nesses 3 meses, para isso vou usar a função sum da seguinte maneira:</p>
+<pre><code>sum(vendas_totais[,2,]) #erro pois os elementos não estão como valores numéricos 
+
+sum(as.numeric(vendas_totais[,2,])) #soma de unidades vendidas (soma das segundas colunas de cada matriz)
+
+<span>> sum(vendas_totais[,2,])</span>
+Error
+
+<span>> sum(as.numeric(vendas_totais[,2,]))</span>
+[1] 198</code></pre>
+<p>Outro exemplo, qual a quantidade máxima vendida em janeiro? Para isso, vou precisar selecionar toda a segunda coluna da primeira matriz, para que assim eu use a função max, não esquecendo de transformar esses elementos em numéricos primeiramente usando as.numeric.</p>
+<pre><code><span>> max(as.numeric(vendas_totais[,2,1]))</span>
+[1] 30</code></pre>
 					</div>
 				</div>
 			</section>
